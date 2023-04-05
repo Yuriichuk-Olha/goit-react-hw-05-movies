@@ -1,9 +1,14 @@
 import { fetchMovie } from "API/API"
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { Link, Outlet, useLocation, useParams } from "react-router-dom"
 
 const MovieDetails = ()=>{
     const location = useLocation();
+    const backLinkLocstion = useRef(location.state?.form ?? '/movies')
+    console.log(backLinkLocstion)
+    
+    console.log(location)
+
 
     const {movieId} = useParams()
     const [movieData, setMovieData] = useState(null);
@@ -22,7 +27,8 @@ const MovieDetails = ()=>{
       const { title, overview, popularity, genres, release_date, poster_path, vote_average} = movieData
       return(
             <>
-            <Link to={location.state}>Back</Link>
+            <Link to={backLinkLocstion.current}>Back</Link>
+            
     <h1>{title}</h1>
     <img alt={poster_path} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} width='250'/>
     <h2>Overview</h2>

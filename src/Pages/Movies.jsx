@@ -4,8 +4,8 @@ import { Link, useSearchParams, useLocation } from "react-router-dom";
    
 const MoviesPage = () => {
 
-    const location = useLocation();
-  
+      const location = useLocation();
+// console.log(location)
 
    const [movies, setMovies]= useState([])
    const [searchParams, setSearchParams] = useSearchParams()
@@ -23,14 +23,12 @@ const MoviesPage = () => {
 
    const updateQueryString= ev=>{  
       const movieIdValue = ev.target.value.trim();
-      console.log(movieIdValue)
       if(movieIdValue === ''){
          return setSearchParams({})
       }
       setSearchParams({query:movieIdValue})
    }
 
-   console.log(location)
    return(
     <> 
     <form onSubmit={(e) => e.preventDefault()}>
