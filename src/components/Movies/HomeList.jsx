@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const HomeList = ({movies}) =>{
     const location = useLocation()
-   // console.log(movies)
+  
      if (!movies) return 
     return(
         <>

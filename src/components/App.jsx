@@ -1,15 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-
-import Home from "Pages/Home";
-//import Movies from "Pages/Movies";
-import MovieDetails from "Pages/MovieDetails";
-import MoviesPage from "Pages/Movies";
+import { lazy } from "react";
 
 import Layout from "./Layout";
-import Cast from "./Movies/Cast";
-import Reviews from "./Movies/Reviews";
 
+const Home = lazy(()=> import('../Pages/Home'))
+const MoviesPage = lazy(()=> import('../Pages/Movies'))
+const MovieDetails = lazy(()=> import('../Pages/MovieDetails'))
 
+const Cast = lazy(()=> import('../components/Movies/Cast'))
+const Reviews = lazy(()=> import('../components/Movies/Reviews'))
 
 
 
@@ -29,15 +28,3 @@ export const App = () => {
   )
 }
 
-// {/* <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       React homework template
-//     </div> 

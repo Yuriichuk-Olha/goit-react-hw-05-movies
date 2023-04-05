@@ -1,12 +1,11 @@
 import { fetchMovie } from 'API/API';
 import {useState, useEffect} from 'react'
-import { Link, useSearchParams } from "react-router-dom";
-import MovieDetails from './MovieDetails';
-//   useLocation
-const MoviesPage = ({movieId}) => {
+import { Link, useSearchParams, useLocation } from "react-router-dom";
+   
+const MoviesPage = () => {
 
-   // const location = useLocation()
-   // const backLink = location.state && '/movies'
+    const location = useLocation();
+  
 
    const [movies, setMovies]= useState([])
    const [searchParams, setSearchParams] = useSearchParams()
@@ -31,6 +30,7 @@ const MoviesPage = ({movieId}) => {
       setSearchParams({query:movieIdValue})
    }
 
+   console.log(location)
    return(
     <> 
     <form onSubmit={(e) => e.preventDefault()}>
@@ -38,25 +38,23 @@ const MoviesPage = ({movieId}) => {
     <button type='submit'>Search</button>
     </form>
 
-    {/* <BackLink to={backLink}>Back</BackLink> */}
+
     
     <ul>
       {movies.map(movie=>{
          return(
             <li key={movie.id}>
-               <Link to={`${movie}`}>{movie.title}</Link>
+               <Link to={`/movies/${movie.id}`} 
+               state={{from: location}}
+               >{movie.title}</Link>
             </li>
          )
       })
    }
-    
-         {!movies && (<MovieDetails movieId={movies}/>)}
-      
    
-    </ul>
-
-    </>
-    
+   </ul>
+   </>
+   
    )
 }
 
